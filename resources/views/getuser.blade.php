@@ -1,0 +1,1 @@
+<h1>Get User Page from {{$name}}</h1>
