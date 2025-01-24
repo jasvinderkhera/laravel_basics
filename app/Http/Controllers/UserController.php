@@ -37,4 +37,26 @@ class UserController extends Controller
     function userAbout($name){
         return view('about',['user'=>$name]);
     }
+
+
+    // Form
+    function addUser(Request $req){
+        // echo "Add user function called";
+        $req ->validate([
+            'username'=>'required | uppercase | min:3 | max:25',
+            'email'=>'required | email',
+            'city'=>'required',
+            'skill'=>'required',
+            'developer'=>'required',
+        ],[
+            'username.uppercase'=>"Bade letter mein chahiye"
+        ]);
+        return $req;   //for all parameters
+        // echo "User name is $req->username";
+        // echo "<br>";
+        // echo "User email is $req->email";
+        // echo "<br>";
+        // echo "User city is $req->city";
+
+    }
 }

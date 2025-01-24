@@ -13,6 +13,11 @@
 
 <h1>Homepage</h1>
 
+<h2>{{url()->previous()}}</h2>
+
+<a href="{{URL::to('about',['jasvinder'])}}">About Jasvinder</a>
+<a href="{{route('hp')}}">Go to Help</a>
+
 
 <style>
     .success{
