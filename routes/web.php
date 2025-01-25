@@ -40,7 +40,7 @@ Route::get('/admin',[UserController::class,'adminLogin']);
 Route::get('/user-about/{name}', [UserController::class,'userAbout']);
 
 Route::get('show', [HomeController::class, 'show']);
-Route::get('user', [HomeController::class, 'user']);
+Route::get('/getalluser', [UserController::class, 'getUsers']);
  
 Route::get('/students',[StudentController::class,'getStudents']);
 

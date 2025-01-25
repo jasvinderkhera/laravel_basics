@@ -17,6 +17,9 @@ return [
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],
+    'http' => [
+        'verify' => 'C:\Users\jasvi\OneDrive\Documents\cacert.pem', // Update this with the actual path to cacert.pem
+    ],
 
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
