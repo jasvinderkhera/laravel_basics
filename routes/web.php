@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StudentController;
+use App\Http\Middleware\AgeCheck;
+use App\Http\Middleware\CountryCheck;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,7 +23,7 @@ Route::get('/about/{name}', function(){
     return view('about',);
 });
 
-Route::view("/contact",'contact');
+Route::view("/contact",'contact')->middleware([AgeCheck::class,CountryCheck::class]);
 Route::view("/user-form",'user-form');
 Route::view('/help','help')->name('hp');
 Route::view('/help/{name}','help')->name('user');
@@ -29,13 +32,18 @@ Route::view('/help/{name}','help')->name('user');
 Route::post("adduser", [UserController::class,'addUser']);
 
 Route::get('/user',[UserController::class,'getUser']);
+Route::get('users', [UserController::class, 'users']);
 Route::get('/getuser',[UserController::class,'getNewUser']);
 Route::get('/aboutuser/{name}',[UserController::class,'aboutUser']);
 Route::get('/admin',[UserController::class,'adminLogin']);
-Route::get('/contact', [UserController::class,'contact']);
+// Route::get('/contact', [UserController::class,'contact']);
 Route::get('/user-about/{name}', [UserController::class,'userAbout']);
+
 Route::get('show', [HomeController::class, 'show']);
 Route::get('user', [HomeController::class, 'user']);
+ 
+Route::get('/students',[StudentController::class,'getStudents']);
+
 
 
 // Prefix Routes
