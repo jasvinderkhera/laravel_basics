@@ -45,9 +45,60 @@ class UserController extends Controller
         return view('users',['users'=>$users]);
     }
     function getUsers(){
-        $response= Http::get('https://jsonplaceholder.typicode.com/todos/1');
+        $response= Http::withOptions([
+            'verify' => false,
+        ])->get('https://jsonplaceholder.typicode.com/users/1');
         $response= $response->body();
-        return view('user', ['$data'=>json_decode($response)]);
+        return view('user', ['data'=>json_decode($response)]);
+    }
+
+    // queries
+
+    function getQueries(){
+        $result =DB::table('users')->get();
+        // $result =DB::table('users')->where('phone','7219283746')->get();
+        // $result = DB::table('users')->first();
+        // $result=[$result];
+
+        //  $result =DB::table('users')->insert(
+        //     [
+        //         'name'=>'tony',
+        //         'email'=>'tony@gmail.com',
+        //         'phone'=>'1234',
+        //     ]
+        //  );
+        //  if($result){
+        //     return "Data Inserted";
+        //  }else{
+        //     return 'Data not Inserted';
+        //  }
+
+
+// Update
+
+        //   $result =DB::table('users')->where('name','tony')
+        //   ->update(['phone'=>'2222']);
+        //  if($result){
+        //     return "Data Updated";
+        //  }else{
+        //     return 'Data not Updated';
+        //  }
+
+
+
+        // Delete
+
+
+           $result =DB::table('users')->where('name','tony')
+          ->delete();
+         if($result){
+            return "Data Deleted";
+         }else{
+            return 'Data not Deleted';
+         }
+
+
+        // return view('queries',['users'=>$result]);
     }
 
 

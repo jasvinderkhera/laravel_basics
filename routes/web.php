@@ -44,6 +44,10 @@ Route::get('/getalluser', [UserController::class, 'getUsers']);
  
 Route::get('/students',[StudentController::class,'getStudents']);
 
+// queries
+
+Route::get('queries',[UserController::class,'getQueries']);
+
 
 
 // Prefix Routes
