@@ -49,6 +49,13 @@ Route::get('/students',[StudentController::class,'getStudents']);
 Route::get('queries',[UserController::class,'getQueries']);
 
 
+// HTTP Requests
+
+Route::view('userform', 'form');
+
+// Route to handle form submission
+Route::post('userform', [UserController::class, 'httpReq']);
+
 
 // Prefix Routes
 

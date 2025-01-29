@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 
 
 class UserController extends Controller
@@ -99,6 +98,18 @@ class UserController extends Controller
 
 
         // return view('queries',['users'=>$result]);
+    }
+
+    // HTTP Requests
+
+    function httpReq(Request $request){
+            echo $request->method();
+            echo "<br>";
+            echo $request->input('username');
+            echo "<br>";
+            echo $request->path();
+            echo "<br>";
+            echo $request->url();
     }
 
 
