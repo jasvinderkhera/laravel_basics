@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
@@ -43,6 +45,10 @@ Route::get('show', [HomeController::class, 'show']);
 Route::get('/getalluser', [UserController::class, 'getUsers']);
  
 Route::get('/students',[StudentController::class,'getStudents']);
+Route::view('localwelcome','localwelcome');
+Route::view('localhome','localhome');
+Route::view('localcontactus','localcontactus');
+Route::view('localabout','localabout');
 
 // queries
 
@@ -55,6 +61,41 @@ Route::view('userform', 'form');
 
 // Route to handle form submission
 Route::post('userform', [UserController::class, 'httpReq']);
+
+
+
+
+// Auth
+
+Route::view('login','login');
+Route::view('profile','profile');
+
+Route::post('login', [AuthController::class, 'login']);
+Route::get('logout', [AuthController::class, 'logout']);
+
+
+// Upload
+
+Route::view('upload','upload');
+Route::post('upload', [UploadController::class, 'upload']);
+
+
+// Localization set Language
+
+
+
+
+Route::middleware('SetLang')->group(function(){
+    Route::view('localwelcome','localwelcome');
+Route::view('localhome','localhome');
+Route::view('localcontactus','localcontactus');
+Route::view('localabout','localabout');
+
+    Route::get('setlang/{lang}', function($lang){
+        Session::put('lang',$lang);
+        return redirect('/localwelcome');
+    });
+});
 
 
 // Prefix Routes
