@@ -45,6 +45,10 @@ Route::get('show', [HomeController::class, 'show']);
 Route::get('/getalluser', [UserController::class, 'getUsers']);
  
 Route::get('/students',[StudentController::class,'getStudents']);
+Route::get('delete/{id}',[StudentController::class,'delete']);
+Route::get('edit/{id}',[StudentController::class,'edit']);
+Route::put('edit-student/{id}',[StudentController::class,'editStudent']);
+Route::get('search',[StudentController::class,'search']);
 Route::view('localwelcome','localwelcome');
 Route::view('localhome','localhome');
 Route::view('localcontactus','localcontactus');
@@ -96,6 +100,10 @@ Route::view('localabout','localabout');
         return redirect('/localwelcome');
     });
 });
+
+
+Route::view('add-students', 'add-students');
+Route::post('add-students', [StudentController::class, 'addStudents']);
 
 
 // Prefix Routes
